@@ -11,7 +11,7 @@ import { BlogPostGenerator } from './components/BlogPostGenerator';
 const Header: React.FC<{ onOpenSettings: () => void; }> = ({ onOpenSettings }) => (
   <header className="relative text-center p-4 md:p-6 border-b border-gray-700">
     <h1 className="text-3xl md:text-2xl font-bold text-white mb-2 font-korean title-effect">
-        <span>블로그 올인원</span>
+        <span>지니 블로그 올인원</span>
     </h1>
     <p className="text-gray-400 text-sm md:text-base font-korean">블로그 글쓰기 모든것</p>
     <div className="absolute top-1/2 right-4 md:right-6 -translate-y-1/2 flex items-center space-x-1 sm:space-x-2">
@@ -31,7 +31,7 @@ const Header: React.FC<{ onOpenSettings: () => void; }> = ({ onOpenSettings }) =
 
 const Footer: React.FC = () => (
   <footer className="text-center p-6 mt-8 border-t border-gray-700 text-gray-500 text-sm">
-    <p>블로그 올인원</p>
+    <p>지니 블로그 올인원</p>
   </footer>
 );
 
