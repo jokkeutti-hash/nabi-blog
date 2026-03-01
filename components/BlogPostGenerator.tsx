@@ -1156,6 +1156,9 @@ https://blackkiwi.net/`);
                                 className="w-4 h-4 text-cyan-600 bg-gray-900 border-gray-600 rounded focus:ring-cyan-500" 
                             />
                             <span className="text-xs font-medium text-gray-300">내부 링크 활성화</span>
+                            {internalLinksList.length > 0 && (
+                                <span className="text-xs font-bold text-cyan-400 bg-cyan-900/40 px-1.5 py-0.5 rounded-full">{internalLinksList.length}</span>
+                            )}
                         </label>
                     </div>
                     <div className="space-x-2">
