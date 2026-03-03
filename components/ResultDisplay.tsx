@@ -159,12 +159,11 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
   // HTML 복사용: 이미지 주석을 눈에 보이는 플레이스홀더로 교체
   const htmlForCopy = useMemo(() => {
     if (!htmlContent) return '';
-    const placeholderStyle = `border: 2px dashed #d1d5db; padding: 32px 20px; text-align: center; color: #9ca3af; font-style: italic; margin: 20px 0; border-radius: 8px; background: #f9fafb; font-size: 14px;`;
     let html = htmlContent;
     html = html.replace(/<!--\s*대표\s*이미지\s*-->/gi,
-      `<div style='${placeholderStyle}'>📷 [ 대표 이미지 삽입 위치 ]</div>`);
+      `\n[ 대표 이미지 삽입 위치 ]\n`);
     html = html.replace(/<!--\s*서브\s*이미지\s*(\d+)\s*-->/gi, (_: string, n: string) =>
-      `<div style='${placeholderStyle}'>📷 [ 서브 이미지 ${n} 삽입 위치 ]</div>`);
+      `\n[ 서브 ${n} 이미지 삽입 위치 ]\n`);
     return html;
   }, [htmlContent]);
 
