@@ -14,8 +14,10 @@ interface ResultDisplayProps {
   subImages: ProcessedContent['subImages'] | null;
   onGenerateImage: () => Promise<void>;
   isGeneratingImage: boolean;
+  onDeleteImage?: () => void;
   onGenerateSubImage: (index: number) => Promise<void>;
   isGeneratingSubImages: Record<number, boolean>;
+  onDeleteSubImage?: (index: number) => void;
   shouldAddThumbnailText: boolean;
   onGenerateThumbnail: () => Promise<void>;
   isGeneratingThumbnail: boolean;
@@ -35,6 +37,8 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
   isGeneratingImage,
   onGenerateSubImage,
   isGeneratingSubImages,
+  onDeleteImage,
+  onDeleteSubImage,
   shouldAddThumbnailText,
   onGenerateThumbnail,
   isGeneratingThumbnail,
@@ -156,14 +160,14 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
     }
   }, [blogPlatform, viewMode]);
 
-  // HTML 복사용: 이미지 주석을 눈에 보이는 플레이스홀더로 교체
+  // HTML 복사용: 이미지 주석을 쉽게 삭제 가능한 단순 텍스트로 교체
   const htmlForCopy = useMemo(() => {
     if (!htmlContent) return '';
     let html = htmlContent;
     html = html.replace(/<!--\s*대표\s*이미지\s*-->/gi,
-      `\n[ 대표 이미지 삽입 위치 ]\n`);
+      `<p>[대표 이미지 삽입위치]</p>`);
     html = html.replace(/<!--\s*서브\s*이미지\s*(\d+)\s*-->/gi, (_: string, n: string) =>
-      `\n[ 서브 ${n} 이미지 삽입 위치 ]\n`);
+      `<p>[서브 이미지 ${n} 삽입위치]</p>`);
     return html;
   }, [htmlContent]);
 
@@ -382,7 +386,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
                     </div>
                     <p className="text-gray-400 bg-gray-900 p-3 rounded-md text-sm mb-3">{supplementaryInfo.altText}</p>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-3 gap-2">
                         <a href={imageUrl || '#'} download={imageUrl ? "featured-image.jpeg" : undefined} onClick={e => !imageUrl && e.preventDefault()} className={`text-center bg-green-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200 inline-block text-sm ${!imageUrl ? 'opacity-50 cursor-not-allowed hover:bg-green-600' : 'hover:bg-green-700'}`}>
                             다운로드
                         </a>
@@ -394,6 +398,13 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
                         {isGeneratingImage ? (
                             <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
                         ) : (imageUrl ? '재생성' : '생성')}
+                        </button>
+                        <button
+                            onClick={onDeleteImage}
+                            disabled={!imageUrl}
+                            className={`text-center bg-red-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200 text-sm ${!imageUrl ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-700'}`}
+                        >
+                            삭제
                         </button>
                     </div>
 
@@ -459,7 +470,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
                         </div>
 
                         {/* 버튼 */}
-                        <div className="grid grid-cols-2 gap-1 p-2 pt-0">
+                        <div className="grid grid-cols-3 gap-1 p-2 pt-0">
                           <a
                             href={subImage.url || '#'}
                             download={subImage.url ? `sub-image-${index + 1}.jpeg` : undefined}
@@ -476,6 +487,12 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
                             {isGeneratingSubImages[index] ? (
                               <svg className="animate-spin h-3.5 w-3.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
                             ) : (subImage.url ? '재생성' : '생성')}
+                          </button>
+                          <button
+                            onClick={() => onDeleteSubImage?.(index)}
+                            className="text-center bg-red-600 text-white font-bold py-1.5 rounded hover:bg-red-700 transition-colors text-xs"
+                          >
+                            삭제
                           </button>
                         </div>
                       </div>

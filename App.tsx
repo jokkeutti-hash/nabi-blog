@@ -57,11 +57,15 @@ const SettingsModal: React.FC<{
     huggingFaceApiKey: string;
     setHuggingFaceApiKey: (key: string) => void;
     onSaveHuggingFace: () => void;
+    onDeleteGemini: () => void;
+    onDeleteNaver: () => void;
+    onDeleteHuggingFace: () => void;
 }> = ({
     isOpen, onClose,
     geminiApiKey, setGeminiApiKey, onSaveGemini, geminiStatus, geminiError, onTestAndSaveGemini, showGeminiKey, setShowGeminiKey,
     clientId, setClientId, clientSecret, setClientSecret, status, error, onTestAndSave,
-    huggingFaceApiKey, setHuggingFaceApiKey, onSaveHuggingFace
+    huggingFaceApiKey, setHuggingFaceApiKey, onSaveHuggingFace,
+    onDeleteGemini, onDeleteNaver, onDeleteHuggingFace
 }) => {
     if (!isOpen) return null;
 
@@ -100,6 +104,12 @@ const SettingsModal: React.FC<{
                                     <><svg className="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>연결 테스트 중...</>
                                 ) : '테스트 & 저장'}
                             </button>
+                            <button
+                                onClick={onDeleteGemini}
+                                className="w-full bg-red-700 text-white font-bold py-2 px-4 rounded-md hover:bg-red-600 transition-colors"
+                            >
+                                API 키 삭제
+                            </button>
                         </div>
                         <div className="mt-3 text-sm min-h-[24px]">
                             {geminiStatus === 'unconfigured' && <p className="text-slate-500">API 키를 입력하고 저장을 눌러주세요.</p>}
@@ -134,6 +144,12 @@ const SettingsModal: React.FC<{
                                 {status === 'testing' ? (
                                     <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
                                 ) : "연결 테스트 및 저장"}
+                            </button>
+                            <button
+                                onClick={onDeleteNaver}
+                                className="w-full bg-red-700 text-white font-bold py-2 px-4 rounded-md hover:bg-red-600 transition-colors"
+                            >
+                                API 키 삭제
                             </button>
                         </div>
                         <div className="mt-3 text-sm h-5">
@@ -172,6 +188,12 @@ const SettingsModal: React.FC<{
                                 className="w-full bg-yellow-600 text-white font-bold py-2 px-4 rounded-md hover:bg-yellow-500 transition-colors flex items-center justify-center"
                             >
                                 저장
+                            </button>
+                            <button
+                                onClick={onDeleteHuggingFace}
+                                className="w-full bg-red-700 text-white font-bold py-2 px-4 rounded-md hover:bg-red-600 transition-colors"
+                            >
+                                API 키 삭제
                             </button>
                         </div>
                         {huggingFaceApiKey && <p className="mt-3 text-sm text-green-400">✅ Hugging Face 키 설정됨</p>}
@@ -295,6 +317,27 @@ function App() {
       } else {
           localStorage.removeItem('hfApiKey_b64');
       }
+  };
+
+  const handleDeleteGemini = () => {
+      localStorage.removeItem('geminiApiKey_b64');
+      setGeminiApiKey('');
+      setGeminiStatus('unconfigured');
+      setGeminiError(null);
+  };
+
+  const handleDeleteNaver = () => {
+      localStorage.removeItem('naverClientId_b64');
+      localStorage.removeItem('naverClientSecret_b64');
+      setNaverClientId('');
+      setNaverClientSecret('');
+      setApiStatus('unconfigured');
+      setApiError(null);
+  };
+
+  const handleDeleteHuggingFace = () => {
+      localStorage.removeItem('hfApiKey_b64');
+      setHuggingFaceApiKey('');
   };
 
   // --- Topic Suggestion State ---
@@ -820,6 +863,9 @@ function App() {
         huggingFaceApiKey={huggingFaceApiKey}
         setHuggingFaceApiKey={setHuggingFaceApiKey}
         onSaveHuggingFace={handleSaveHuggingFaceKey}
+        onDeleteGemini={handleDeleteGemini}
+        onDeleteNaver={handleDeleteNaver}
+        onDeleteHuggingFace={handleDeleteHuggingFace}
       />
     </div>
   );

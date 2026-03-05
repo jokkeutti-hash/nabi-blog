@@ -164,8 +164,8 @@ https://blackkiwi.net/`);
     };
   }, []);
 
-  const FORM_STATE_KEY = 'blogGeneratorFormState';
-  const INTERNAL_LINKS_KEY = 'blogGeneratorInternalLinks';
+  const FORM_STATE_KEY = 'jina_blogGeneratorFormState';
+  const INTERNAL_LINKS_KEY = 'jina_blogGeneratorInternalLinks';
 
   // Load/Save State Logic
   useEffect(() => {
