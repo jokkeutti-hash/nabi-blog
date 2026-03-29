@@ -70,21 +70,21 @@ const THUMBNAIL_COLORS = [
 ];
 
 const PRESET_INTERNAL_LINKS = [
-    { url: "https://jinajang.com", anchor: "별잔치", description: "세상이라는 거대한 우주 속에서 자신만의 빛을 낸 세계 각국의 인물들을 조명합니다. 시대를 앞서간 리더, 예술혼을 불태운 거장, 그리고 묵묵히 세상을 바꾼 숨은 영웅들까지. 그들의 치열했던 삶과 빛나는 순간들을 이곳에 모았습니다. 당신의 가슴을 뛰게 할 별들의 이야기에 초대합니다." },
-    { url: "https://honeypartner.jinajang.com", anchor: "꿀딴지", description: "실생활에 유익한 생활 꿀팁, 건강 정보, 여행 코디, 육아·출산 팁 등 다양한 주제 제공" },
-    { url: "https://warehouse.jinajang.com", anchor: "보험창고", description: "보험 관련 정보와 노하우를 중심으로 다양한 콘텐츠를 제공하는 전문 블로그입니다." },
-    { url: "https://healing-world.jinajang.com", anchor: "힐링세상", description: "스트레스와 바쁜 일상 속에서 진정한 쉼과 힐링을 찾고자 하는 분들을 위한 국내 여행 블로그입니다" },
-    { url: "https://honey-tip.jinajang.com", anchor: "생활달인꿀팁", description: "살림과 생활 속에서 활용할 수 있는 실용적이고 스마트한 꿀팁을 소개하는 전문 콘텐츠 블로그입니다. 다양한 일상 문제에 대한 해결책을 깔끔하게 정리해 전달해요." },
-    { url: "https://grandmotherwook.jinajang.com", anchor: "오늘도 멍냥해", description: "이 블로그에서는 반려동물의 건강관리, 훈련 꿀팁, 용품 리뷰, 펫보험 비교, 펫호텔 후기까지 진짜 집사의 경험을 바탕으로 한 유용한 정보만 담고 있어요." },
-    { url: "https://mind-trainer.jinajang.com", anchor: "매일1%성장", description: "하루 1% 성장하는 삶을 꿈꾸며, 내면의 근육을 키우는 실천형 블로그입니다. 자기개발, 멘탈관리, 루틴 설계, 감정코칭까지! 진짜 변화는 마음을 다스리는 것에서 시작됩니다. 함께 실천하고 성장하는 공간, 지금 시작해보세요." },
-    { url: "https://power-routine.jinajang.com", anchor: "루틴의힘", description: "영어, 자격증, 공부 루틴까지! 합격을 향한 모든 과정을 기록하는 성장형 블로그입니다. 매일 작게 쌓는 루틴으로 인생을 바꾸는 법, 실전 합격전략과 공부노하우를 공유합니다. 직장인부터 학생까지, 누구든 따라할 수 있도록 쉽게! 실천형 공부 블로그 지금 시작하세요." },
-    { url: "https://it-life.jinajang.com", anchor: "IT생활백서", description: "노트북, 스마트폰, 태블릿, 주변기기까지! 직접 써보고 비교하며 진짜 가성비 제품만 소개하는 디지털 기기 리뷰 블로그입니다. 현직 IT 마케터 & 사용자 시점으로 사양 분석, 활용 팁, 구매 가이드까지 제공!" },
-    { url: "https://house-guidebook.jinajang.com", anchor: "내집마련가이드북", description: "전·월세, 매매, 청약, 분양, 재개발까지! 실거래가 분석부터 지역 입지, 투자 리스크 관리까지 누구나 이해할 수 있도록 정리합니다. 실수요자, 부린이, 투자자까지 누구에게나 유익한 실전형 부동산 정보 블로그입니다." },
-    { url: "https://worlds-storys.blogspot.com/", anchor: "하루의양식", description: "삶에 필요한 모든 이야기와 꿀팁 모음. 건강, IT, 부동산, 생활 지혜, 자기계발 등 일상에 활력을 더하는 정보를 하루 한 조각씩 제공합니다." },
-    { url: "https://props2025.blogspot.com/", anchor: "이쁘니 소품이지", description: "최신 인테리어 트렌드를 반영하여, 좁은 자취방도 호텔처럼 꾸미는 소품 활용법을 공유합니다. 미니멀 수납, 조명 오브제 트렌드, 연말연시 선물 소품 추천 등 실생활에 바로 적용 가능한 감각적인 소품과 인테리어 팁을 심도 있게 다룹니다." },
-    { url: "https://health-protector2025.blogspot.com/", anchor: "건강지킴이", description: "현대인의 삶의 질을 높이는 과학 기반의 건강 정보를 제공합니다. 수면, 정신 건강, 간 건강 관리부터 계절성 질환 극복 전략까지! 최신 의학 트렌드와 실용적인 영양제 정보를 통해 당신의 건강을 365일 지켜드립니다." },
-    { url: "https://cafe-tour2025.blogspot.com/", anchor: "카페탐방", description: "단순히 사진만 예쁜 곳을 넘어, 맛과 분위기, 음악까지 오감을 만족시키는 진정한 감성 카페를 찾아 탐방합니다. 노을 뷰, 단풍 뷰 등 계절별 테마 카페 추천부터 BEST 디저트 조합, 힐링 음악이 있는 카페의 숨겨진 가치까지!" },
-    { url: "https://with-skin.blogspot.com/", anchor: "피부미인", description: "민감성 피부 장벽 강화와 트러블 해결을 위한 과학적이고 실용적인 정보를 제공합니다. 홍조 응급 진정법, 시술 후 회복 노하우, 10분 아침 루틴 등 바쁜 현대인을 위한 효과 만점의 뷰티 팁과 스킨케어 트렌드 전망을 지금 만나보세요." },
+    { url: "https://jinajang.com", anchor: "별잔치", description: "검색 키워드: 유명인 명언, 위인 이야기, 성공한 사람들의 공통점, 역사 속 인물, 세계 위인전, 기업가 성공 비결, 연예인 성공 스토리, 스포츠 스타 인생, 리더십 비결, 인생 역전 사례, 감동 실화, 자수성가 비결, 노벨상 수상자, 올림픽 챔피언, 예술가의 삶, 사회운동가 업적. 어떤 주제의 글이든 '성공·인물·동기부여·삶의 교훈' 각도로 연결 가능." },
+    { url: "https://honeypartner.jinajang.com", anchor: "꿀딴지", description: "검색 키워드: 생활비 절약법, 살림 꿀팁, 집안일 빨리 하는 법, 냉장고 정리법, 주방 청소 꿀팁, 임신 초기 증상, 육아 꿀팁, 여행 준비물 체크리스트, 국내 여행지 추천, 다이어트 식단, 건강한 아침식사, 명절 준비, 결혼 준비 체크리스트, 가계부 쓰는 법, 전기세 절약, 냉방비 줄이기. 일상생활·살림·건강·여행 어떤 주제와도 연결 가능." },
+    { url: "https://warehouse.jinajang.com", anchor: "보험창고", description: "검색 키워드: 실손보험 추천 2024, 자동차보험 싸게 가입하는 법, 암보험 비교, 치아보험 필요할까, 보험료 줄이는 법, 보험금 청구 방법, 실비보험 청구, 운전자보험 필요성, 어린이보험 추천, 노후 연금보험, 종신보험 vs 정기보험, 보험 해지 환급금, 사회초년생 보험, 건강보험 환급, 4대보험 계산. 재정·건강·노후·사고 관련 글에서 필수 연결 키워드." },
+    { url: "https://healing-world.jinajang.com", anchor: "힐링세상", description: "검색 키워드: 국내 여행지 추천, 당일치기 드라이브 코스, 1박2일 여행지, 서울 근교 나들이, 바다 여행지, 산 트레킹 코스, 국내 온천 추천, 캠핑장 추천, 글램핑 추천, 가을 단풍 명소, 봄 벚꽃 명소, 해돋이 명소, 힐링 여행지, 숨은 명소, 가족 여행지, 커플 여행지, 혼자 여행, 펜션 추천. 스트레스·여가·힐링·자연 주제 글에 자연스럽게 연결." },
+    { url: "https://honey-tip.jinajang.com", anchor: "생활달인꿀팁", description: "검색 키워드: 청소 꿀팁, 세탁 꿀팁, 냄새 제거법, 곰팡이 제거, 변기 청소, 욕실 청소, 주방 기름때 제거, 옷 얼룩 제거, 신발 세탁법, 냉동실 정리, 식품 보관법, 셀프 인테리어, 전기세 아끼는 법, 분리수거 방법, 수납 정리법, 가성비 생활용품, 다이소 추천. 집·위생·정리·절약 모든 주제에 연결 가능한 만능 블로그." },
+    { url: "https://grandmotherwook.jinajang.com", anchor: "오늘도 멍냥해", description: "검색 키워드: 강아지 키우기 처음, 고양이 사료 추천, 반려견 예방접종, 반려동물 건강검진, 강아지 훈련법, 고양이 화장실 교육, 펫보험 비교, 동물병원 비용, 강아지 간식 추천, 고양이 장난감, 반려동물 여행, 강아지 분리불안, 고양이 구토 이유, 노령견 관리, 반려동물 입양, 햄스터 키우기, 토끼 키우기. 건강·생활·감정 글에서도 반려동물 연결 가능." },
+    { url: "https://mind-trainer.jinajang.com", anchor: "매일1%성장", description: "검색 키워드: 자기계발 방법, 아침 루틴 만들기, 좋은 습관 형성, 번아웃 극복법, 의욕 없을 때, 우울감 극복, 자존감 높이는 법, 동기부여 명언, 시간 관리법, 미루는 습관 고치기, 독서 습관, 명상 효과, 감사 일기 쓰기, 긍정적 사고, 직장 스트레스 해소, 인간관계 스트레스. 심리·정서·성장·직장 주제 글 모두에 연결 최적." },
+    { url: "https://power-routine.jinajang.com", anchor: "루틴의힘", description: "검색 키워드: 공무원 공부법, 영어 공부 혼자 하기, 토익 점수 올리는 법, 자격증 추천 2024, 컴활 독학, 한국사능력검정시험, 수능 공부법, 직장인 자격증, 퇴근 후 공부, 온라인 강의 추천, 독학 성공 후기, 공부 집중력 높이기, 플래너 쓰는 법, 스터디 모집, 노트 정리법, 인강 활용법. 취업·자격증·학습·성장 모든 주제와 연결." },
+    { url: "https://it-life.jinajang.com", anchor: "IT생활백서", description: "검색 키워드: 노트북 추천 2024, 가성비 스마트폰, 무선이어폰 비교, 태블릿 추천, AI 챗봇 활용법, ChatGPT 사용법, 유튜브 수익화, 블로그 시작하는 법, 스마트폰 배터리 절약, 앱 추천, 공인인증서 발급, 중고나라 사기 예방, 와이파이 속도 올리기, 재택근무 필수템, 스마트홈 구축. IT·디지털·부업·SNS 모든 주제와 연결." },
+    { url: "https://house-guidebook.jinajang.com", anchor: "내집마련가이드북", description: "검색 키워드: 청약 당첨 방법, 아파트 매매 절차, 전세 사기 예방, 주택담보대출 금리 비교, 부동산 투자 초보, 갭투자 방법, 재개발 투자, 청약 가점 계산, 분양가 상한제, 취득세 계산, 양도세 절약법, 월세 vs 전세, 신혼부부 특별공급, 무주택자 혜택, 부동산 경매 입문. 돈·재테크·주거·결혼 관련 모든 글에서 핵심 연결." },
+    { url: "https://worlds-storys.blogspot.com/", anchor: "하루의양식", description: "검색 키워드: 오늘의 명언, 감동 실화, 따뜻한 이야기, 살면서 꼭 알아야 할 것, 인생 교훈, 좋은 글귀, 시사 상식, 재미있는 역사, 세계 이슈, 건강 상식, 요리 레시피, IT 꿀팁, 절약 생활, 독서 추천, 영화 추천, 드라마 추천. 어떤 주제의 글에서도 '정보·지식·이야기' 각도로 폭넓게 연결 가능한 종합 블로그." },
+    { url: "https://props2025.blogspot.com/", anchor: "이쁘니 소품이지", description: "검색 키워드: 원룸 인테리어, 자취방 꾸미기, 신혼집 인테리어, 거실 인테리어 소품, 침실 분위기 내는 법, 조명 추천, 수납 아이디어, 식물 인테리어, 계절 인테리어, 포토존 만들기, 다이소 인테리어, 인테리어 소품 쇼핑몰, 선물 추천, 홈파티 데코, 핸드메이드 소품. 이사·결혼·생활·홈데코·선물 주제 글에 자연스러운 연결." },
+    { url: "https://health-protector2025.blogspot.com/", anchor: "건강지킴이", description: "검색 키워드: 면역력 높이는 음식, 영양제 추천, 수면 잘 자는 법, 허리 통증 완화, 목디스크 예방, 당뇨 초기증상, 고혈압 낮추는 법, 콜레스테롤 관리, 다이어트 운동, 홈트레이닝, 건강검진 준비, 감기 빨리 낫는 법, 계절 알레르기, 두통 원인, 피로회복 방법, 금연 방법, 장 건강. 건강·의료·식품·운동 모든 주제의 필수 연결 블로그." },
+    { url: "https://cafe-tour2025.blogspot.com/", anchor: "카페탐방", description: "검색 키워드: 서울 분위기 좋은 카페, 감성카페 추천, 뷰 좋은 카페, 핫플레이스 카페, 애견카페, 북카페, 루프탑카페, 오션뷰 카페, 계절 카페 추천, 데이트 카페, 혼자 가기 좋은 카페, 카공족 카페, 카페 디저트 맛집, 아인슈페너, 크로플, 홈카페 레시피, 커피 원두 추천. 여행·데이트·힐링·라이프스타일 주제 글에 모두 연결 가능." },
+    { url: "https://with-skin.blogspot.com/", anchor: "피부미인", description: "검색 키워드: 피부 좋아지는 법, 여드름 없애는 법, 기미 없애는 법, 화장품 추천, 수분크림 추천, 선크림 추천, 안티에이징 관리, 피부과 시술 가격, 보톡스 효과, 피부 탄력 높이는 법, 민감성 피부 관리, 남성 스킨케어, 메이크업 기초, 파운데이션 추천, 쿠션 추천, 클렌징 방법. 뷰티·건강·자기관리 주제 모든 글에 자연스럽게 연결." },
 ];
 
 export const BlogPostGenerator: React.FC<BlogPostGeneratorProps> = ({
@@ -142,6 +142,32 @@ https://blackkiwi.net/`);
   const [language, setLanguage] = useState<string>('ko');
   const [blogPlatform, setBlogPlatform] = useState<string>('auto');
 
+  // 노출 최적화 자동 다양화
+  const [autoVariety, setAutoVariety] = useState<boolean>(true);
+
+  // SEO에 좋은 톤+타겟 조합 (노출 잘 되는 패턴 위주)
+  const SEO_COMBOS = [
+    { tone: 'friendly',      targetAudience: 'beginner',  label: '친근한 × 초보자' },
+    { tone: 'professional',  targetAudience: 'expert',    label: '전문적 × 전문가' },
+    { tone: 'tistory',       targetAudience: 'default',   label: '티스토리 × 일반' },
+    { tone: 'friendly',      targetAudience: 'parent',    label: '친근한 × 주부' },
+    { tone: 'professional',  targetAudience: 'beginner',  label: '전문적 × 초보자' },
+    { tone: 'enthusiastic',  targetAudience: 'student',   label: '열정적 × 학생' },
+    { tone: 'humorous',      targetAudience: 'default',   label: '유머러스 × 일반' },
+    { tone: 'formal',        targetAudience: 'expert',    label: '격식 × 전문가' },
+    { tone: 'friendly',      targetAudience: 'single',    label: '친근한 × 1인가구' },
+    { tone: 'enthusiastic',  targetAudience: 'default',   label: '열정적 × 일반' },
+  ];
+
+  const applyAutoVariety = useCallback(() => {
+    const combo = SEO_COMBOS[Math.floor(Math.random() * SEO_COMBOS.length)];
+    const theme = COLOR_THEMES[Math.floor(Math.random() * COLOR_THEMES.length)];
+    setTone(combo.tone);
+    setTargetAudience(combo.targetAudience);
+    setSelectedTheme(theme);
+    return combo.label;
+  }, []);
+
   useEffect(() => {
     if (detectedPlatform) setBlogPlatform(detectedPlatform);
   }, [detectedPlatform]);
@@ -166,6 +192,8 @@ https://blackkiwi.net/`);
 
   const FORM_STATE_KEY = 'jina_blogGeneratorFormState';
   const INTERNAL_LINKS_KEY = 'jina_blogGeneratorInternalLinks';
+  const INTERNAL_LINKS_VERSION_KEY = 'jina_blogGeneratorInternalLinksVersion';
+  const CURRENT_PRESET_VERSION = `v${PRESET_INTERNAL_LINKS.length}_${PRESET_INTERNAL_LINKS.map(l => l.url).join('').length}`;
 
   // Load/Save State Logic
   useEffect(() => {
@@ -258,6 +286,22 @@ https://blackkiwi.net/`);
     useEffect(() => {
         try {
             const savedLinksJSON = localStorage.getItem(INTERNAL_LINKS_KEY);
+
+            // 프리셋 버전이 바뀌었으면 무조건 새 프리셋으로 리셋
+            const savedVersion = localStorage.getItem(INTERNAL_LINKS_VERSION_KEY);
+            if (savedVersion !== CURRENT_PRESET_VERSION) {
+                const initialLinks = PRESET_INTERNAL_LINKS.map((preset, index) => ({
+                    id: index + 1,
+                    url: preset.url,
+                    anchor: preset.anchor,
+                    description: preset.description
+                }));
+                setInternalLinksList(initialLinks);
+                internalLinkCounter.current = initialLinks.length + 1;
+                localStorage.setItem(INTERNAL_LINKS_KEY, JSON.stringify(initialLinks));
+                localStorage.setItem(INTERNAL_LINKS_VERSION_KEY, CURRENT_PRESET_VERSION);
+                return;
+            }
 
             // localStorage에 키 자체가 있으면 (빈 배열 포함) 그대로 복원
             if (savedLinksJSON !== null) {
@@ -655,6 +699,19 @@ https://blackkiwi.net/`);
     setIsLoading(true);
     setGeneratedContent(null);
 
+    // 자동 다양화: 생성 직전에 랜덤 조합 적용
+    let activeTone = tone;
+    let activeTarget = targetAudience;
+    if (autoVariety) {
+      const combo = SEO_COMBOS[Math.floor(Math.random() * SEO_COMBOS.length)];
+      const theme = COLOR_THEMES[Math.floor(Math.random() * COLOR_THEMES.length)];
+      activeTone = combo.tone;
+      activeTarget = combo.targetAudience;
+      setTone(combo.tone);
+      setTargetAudience(combo.targetAudience);
+      setSelectedTheme(theme);
+    }
+
     try {
       const finalInteractiveElementIdea = shouldIncludeInteractiveElement ? interactiveElementIdea : null;
       const finalRawContent = activeSuggestionTab === 'memo' ? memoContent : null;
@@ -684,9 +741,9 @@ https://blackkiwi.net/`);
       } : null;
 
       const content = await generateBlogPost(
-        topic, selectedTheme, shouldGenerateImage, 
-        shouldGenerateSubImages, finalInteractiveElementIdea, 
-        finalRawContent, tone, targetAudience, 
+        topic, selectedTheme, shouldGenerateImage,
+        shouldGenerateSubImages, finalInteractiveElementIdea,
+        finalRawContent, activeTone, activeTarget,
         additionalRequest, thumbnailAspectRatio, formattedDate,
         validInternalLinks, externalSourceOption, externalLinks,
         adDetails, shouldGenerateCta,
@@ -997,6 +1054,30 @@ https://blackkiwi.net/`);
                 />
             </div>
 
+            {/* 노출 최적화 자동 다양화 토글 */}
+            <div
+              onClick={() => setAutoVariety(v => !v)}
+              className={`cursor-pointer p-4 rounded-lg border transition-all ${autoVariety ? 'bg-green-900/30 border-green-600' : 'bg-gray-900 border-gray-700 hover:border-gray-500'}`}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="font-bold text-white text-sm">🎲 노출 최적화 자동 다양화</span>
+                  <p className="text-xs text-gray-400 mt-0.5">생성할 때마다 톤·타겟·테마를 SEO에 유리한 조합으로 자동 변경 → 같은 주제라도 다양한 글 생성</p>
+                </div>
+                <div className={`w-12 h-6 rounded-full transition-all flex-shrink-0 ml-4 ${autoVariety ? 'bg-green-500' : 'bg-gray-600'}`}>
+                  <div className={`w-5 h-5 rounded-full bg-white shadow mt-0.5 transition-all ${autoVariety ? 'ml-6' : 'ml-0.5'}`} />
+                </div>
+              </div>
+              {autoVariety && (
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {SEO_COMBOS.slice(0, 4).map((c, i) => (
+                    <span key={i} className="text-[10px] bg-green-800/50 text-green-300 px-2 py-0.5 rounded-full">{c.label}</span>
+                  ))}
+                  <span className="text-[10px] text-gray-500 px-1 py-0.5">외 {SEO_COMBOS.length - 4}가지 조합</span>
+                </div>
+              )}
+            </div>
+
             {/* Advanced Options Toggle */}
             <div className="bg-gray-900 p-4 rounded-lg border border-gray-700 space-y-4">
                 <h3 className="text-md font-semibold text-white mb-2">고급 옵션</h3>
@@ -1015,21 +1096,29 @@ https://blackkiwi.net/`);
                          </select>
                      </div>
                      <div className="space-y-2">
-                         <label className="text-sm font-medium text-gray-400">톤앤매너</label>
+                         <div className="flex items-center justify-between">
+                           <label className="text-sm font-medium text-gray-400">톤앤매너</label>
+                           {autoVariety && <span className="text-[10px] text-green-400 bg-green-900/30 px-2 py-0.5 rounded-full">🎲 자동 적용</span>}
+                         </div>
                          <select
                              value={tone}
                              onChange={(e) => setTone(e.target.value)}
-                             className="w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white focus:ring-2 focus:ring-cyan-500"
+                             disabled={autoVariety}
+                             className="w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white focus:ring-2 focus:ring-cyan-500 disabled:opacity-40"
                          >
                              {TONES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
                          </select>
                      </div>
                      <div className="space-y-2">
-                         <label className="text-sm font-medium text-gray-400">타겟 독자</label>
+                         <div className="flex items-center justify-between">
+                           <label className="text-sm font-medium text-gray-400">타겟 독자</label>
+                           {autoVariety && <span className="text-[10px] text-green-400 bg-green-900/30 px-2 py-0.5 rounded-full">🎲 자동 적용</span>}
+                         </div>
                          <select
                              value={targetAudience}
                              onChange={(e) => setTargetAudience(e.target.value)}
-                             className="w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white focus:ring-2 focus:ring-cyan-500"
+                             disabled={autoVariety}
+                             className="w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white focus:ring-2 focus:ring-cyan-500 disabled:opacity-40"
                          >
                              {TARGETS.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
                          </select>
