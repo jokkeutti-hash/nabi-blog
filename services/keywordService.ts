@@ -20,6 +20,11 @@ interface Proxy {
 
 const PROXIES: Proxy[] = [
     {
+        name: 'jina-reader',
+        buildUrl: (url) => `https://r.jina.ai/${url}`,
+        parseResponse: (response) => response.text(),
+    },
+    {
         name: 'allorigins.win',
         buildUrl: (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
         parseResponse: (response) => response.text(),

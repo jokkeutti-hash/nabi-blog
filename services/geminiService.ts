@@ -335,7 +335,7 @@ const jsonStructureForPrompt = `{
         "metaDescription": "A compelling summary of the post without any dates or years.",
         "imagePrompt": "A detailed English prompt for a purely visual image — NO text, NO letters, NO watermark — emphasizing realistic Korean aesthetics, Korean lifestyle, K-aesthetic photography, cinematic composition...",
         "altText": "A concise and descriptive alt text...",
-        "seoTitles": ["SEO-optimized title 1", "SEO-optimized title 2"],
+        "seoTitles": ["숫자+키워드 제목 (예: 5가지 ~하는 법)", "문제해결형 제목 (예: ~때문에 고민이라면)", "이득강조형 제목 (예: 모르면 손해인 ~)", "궁금증형 제목 (예: ~하면 어떻게 될까)"],
         "thumbnailTitles": ["Short thumbnail title 1", "Short thumbnail title 2"],
         "subImagePrompts": [
             { "prompt": "A detailed English prompt describing the specific scene for this H2 section — NO text, NO letters, NO watermark — specific subject, background, mood, color palette, and composition related to the section topic, authentic South Korean lifestyle aesthetic, cinematic lighting, high-fidelity K-aesthetic photography, sharp detail, 8k resolution, purely visual image only", "altText": "Alt text for sub-image 1" }
@@ -572,14 +572,18 @@ ${additionalRequest}
 ### **필수**: 내부 링크 (관련 글 보기 섹션)
 아래에 제공된 내부 링크들을 **[Phase 5] 참고 자료 섹션** 안에 반드시 포함해주세요.
 
-**⚠️ 후킹 제목 재작성 규칙 (매우 중요)**:
+**⚠️ SEO 최적화 앵커텍스트 재작성 규칙 (매우 중요)**:
 - 제공된 **URL은 절대 변경 금지**. 원본 URL 그대로 사용.
-- 링크 표시 **제목(anchor text)은 원본 제목을 그대로 쓰지 말고**, 블로그 본문 주제와 연계하여 독자가 클릭하고 싶어지는 **후킹 문구**로 반드시 재작성할 것.
-- 후킹 제목 패턴 예시:
-  - "~하는 법 완벽 정리"  /  "모르면 손해인 ~ 총정리"
-  - "~의 비밀, 전문가가 알려드립니다"  /  "이것만 알면 OK! ~ 핵심 가이드"
-  - "지금 당장 확인해야 할 ~"  /  "~, 이 글 하나로 끝내세요"
-- 원본 제목은 참고용으로만 사용하고, 최종 카드에 표시되는 텍스트는 반드시 새로 작성한 후킹 문구를 사용할 것.
+- 링크 앵커텍스트는 **사람들이 실제로 네이버·구글에 검색하는 키워드**를 포함한 문장으로 재작성할 것.
+- 각 블로그의 설명에 있는 '검색 키워드' 중 **본문 주제와 가장 관련 있는 키워드**를 골라 앵커텍스트에 자연스럽게 녹일 것.
+- SEO 앵커텍스트 패턴 (반드시 실제 검색어 포함):
+  - "[구체적 검색어] 완벽 정리 / 총정리"
+  - "[검색어], 이것만 알면 끝!"
+  - "모르면 손해인 [검색어] 핵심 가이드"
+  - "[검색어] 전문가가 알려드리는 방법"
+  - "[검색어] 한 번에 해결하는 법"
+- 앵커텍스트에 **구체적인 키워드**(예: "자동차보험", "당일치기 드라이브코스", "여드름 없애는 법")가 반드시 들어가야 함. 막연한 표현("다양한 정보", "유익한 콘텐츠") 사용 금지.
+- 원본 블로그 이름은 카드 하단 설명에만 쓰고, 앵커 메인 텍스트는 반드시 SEO 키워드 문구로 작성할 것.
 
 [내부 링크 목록 — 원본 제목은 참고용]
 ${validLinks.map(link => `- 원본 제목: "${link.anchor || '관련 글'}" / URL: ${link.url}${link.description ? ` / 설명: ${link.description}` : ''}`).join('\n')}
@@ -663,8 +667,13 @@ ${internalLinksInstructions}
 ## 📋 필수 6단계 구조 (Phase 1~6)
 
 ### [Phase 1] 도입부
-- **H1 제목 태그 (SEO 필수)**: 글 맨 앞, 메타 설명 박스보다 먼저 출력. 포스트 제목을 H1으로 작성. 페이지당 H1은 반드시 1개만 사용:
-  \`<h1 style='font-size: 28px; font-weight: 800; color: ${theme.colors.text}; line-height: 1.4; margin: 0 0 24px; word-break: keep-all;'>블로그 포스트 제목</h1>\`
+- **H1 제목 태그 (SEO + CTR 최적화 필수)**: 글 맨 앞, 메타 설명 박스보다 먼저 출력. 페이지당 H1은 반드시 1개만 사용.
+  - **H1 제목 작성 공식** (CTR 극대화): 아래 패턴 중 하나를 반드시 적용.
+    - 숫자 포함: "N가지 ~하는 법", "N분 만에 해결하는 ~", "N단계로 끝내는 ~"
+    - 궁금증 자극: "~, 이렇게 하면 됩니다", "~하는 사람들이 몰랐던 사실"
+    - 이득 강조: "~하면 달라지는 N가지", "모르면 손해인 ~ 완벽 정리"
+    - 문제 해결: "~때문에 고민이라면 이 글 하나로 끝"
+  - 스타일: \`<h1 style='font-size: 28px; font-weight: 800; color: ${theme.colors.text}; line-height: 1.4; margin: 0 0 24px; word-break: keep-all;'>블로그 포스트 제목</h1>\`
 - **메타 설명 박스 (SEO 최적화 필수)**: H1 태그 바로 다음에 위치. 아래 SEO 규칙을 반드시 준수하여 작성:
   1. **핵심 키워드 포함**: 블로그 주제의 핵심 키워드를 문장 앞부분에 자연스럽게 포함할 것.
   2. **검색 의도 반영**: 독자가 이 글을 검색하는 이유(정보 습득, 문제 해결, 비교 등)를 정확히 반영할 것.
@@ -672,6 +681,9 @@ ${internalLinksInstructions}
   4. **후킹 문구**: "~하는 법", "~의 모든 것", "지금 바로 확인하세요" 등 클릭을 유도하는 강력한 문구로 시작할 것.
   5. **날짜/연도 절대 금지**: 시점 정보 일절 포함 금지.
   스타일: \`<div style='background: ${theme.colors.highlightBg}; border-left: 5px solid ${theme.colors.primary}; padding: 20px 25px; margin: 20px 0 30px; border-radius: 8px;'><p style='color: ${theme.colors.text}; font-size: 16px; line-height: 1.9; margin: 0;'>SEO 최적화 메타 설명 (80~120자)</p></div>\`
+- **구글 스니펫 0위 답변 박스 (Featured Snippet 필수)**: 메타 설명 박스 바로 다음, 목차보다 먼저 위치. 독자의 핵심 질문에 **2~4문장으로 바로 답변**하는 박스. 구글이 이 박스를 검색 결과 최상단(Position 0)에 노출함.
+  - 작성 규칙: "~란 무엇인가?", "~하는 방법은?" 같은 핵심 질문에 명확하고 간결하게 답변. 전문 용어 없이 누구나 이해할 수 있게 작성.
+  - 스타일: \`<div style='background: linear-gradient(135deg, ${theme.colors.highlightBg}, ${theme.colors.highlightBg}); border: 2px solid ${theme.colors.primary}; border-radius: 12px; padding: 20px 25px; margin: 0 0 25px;'><p style='color: ${theme.colors.primary}; font-weight: 800; font-size: 15px; margin: 0 0 10px;'>💡 핵심 요약</p><p style='color: ${theme.colors.text}; font-size: 15px; line-height: 1.9; margin: 0;'>핵심 질문에 대한 2~4문장 직접 답변 (구글 스니펫 최적화)</p></div>\`
 
 ### [Phase 2] 목차
 - ⚠️ **위치 고정**: 메타 설명 박스 바로 다음에 출력. 대표 이미지·서론 문단보다 먼저. 절대로 본문 중간·하단·FAQ 앞에 넣지 말 것.
@@ -1113,19 +1125,6 @@ const blobToBase64 = (blob: Blob): Promise<string | null> =>
         reader.readAsDataURL(blob);
     });
 
-const fetchPollinationsImage = async (prompt: string, width: number, height: number, model: string, timeoutMs: number): Promise<string | null> => {
-    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${width}&height=${height}&nologo=true&model=${model}`;
-    try {
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), timeoutMs);
-        const response = await fetch(url, { signal: controller.signal });
-        clearTimeout(timer);
-        if (!response.ok) return null;
-        const blob = await response.blob();
-        return blobToBase64(blob);
-    } catch { return null; }
-};
-
 // 플랫폼별 권장 이미지 사이즈
 const PLATFORM_IMAGE_SIZES: Record<string, {
     main: { '16:9': [number, number]; '1:1': [number, number] };
@@ -1150,36 +1149,56 @@ const getPlatformImageSize = (
 };
 
 const generateImageWithPollinations = async (prompt: string, width: number, height: number): Promise<string | null> => {
-    // 1차: flux (고품질, 60초)
-    const fluxResult = await fetchPollinationsImage(prompt, width, height, 'flux', 60000);
-    if (fluxResult) return fluxResult;
-
-    // 2차: turbo (빠름, 20초)
-    const turboResult = await fetchPollinationsImage(prompt, width, height, 'turbo', 20000);
-    if (turboResult) return turboResult;
-
+    for (const model of ['flux', 'turbo']) {
+        try {
+            const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${width}&height=${height}&nologo=true&model=${model}`;
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), model === 'flux' ? 60000 : 20000);
+            const response = await fetch(url, { signal: controller.signal });
+            clearTimeout(timer);
+            if (!response.ok) continue;
+            const blob = await response.blob();
+            return await blobToBase64(blob);
+        } catch { continue; }
+    }
     return null;
 };
 
-const generateImageWithHuggingFace = async (prompt: string, width: number, height: number): Promise<string | null> => {
+const generateImageWithGemini = async (prompt: string, aspectRatio: '16:9' | '1:1'): Promise<string | null> => {
     try {
-        const hfKey_b64 = localStorage.getItem('hfApiKey_b64');
-        if (!hfKey_b64) return null;
-        const hfApiKey = atob(hfKey_b64).trim();
-        if (!hfApiKey) return null;
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 45000);
-        const response = await fetch('https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell', {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${hfApiKey}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ inputs: prompt, parameters: { width, height } }),
-            signal: controller.signal,
+        const ai = getAi();
+        const ratio = aspectRatio === '16:9' ? '16:9' : '1:1';
+        const fullPrompt = `${prompt}, ${ratio} format`;
+
+        // 1순위: Imagen 4 Fast ($0.02/장)
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const res = await (ai.models as any).generateImages({
+                model: 'imagen-4.0-fast-generate-001',
+                prompt: fullPrompt,
+                config: { numberOfImages: 1, aspectRatio: ratio, outputMimeType: 'image/jpeg' },
+            });
+            const bytes = res?.generatedImages?.[0]?.image?.imageBytes;
+            if (bytes) return `data:image/jpeg;base64,${bytes}`;
+        } catch { /* fallback */ }
+
+        // 2순위: Gemini 3.1 Flash Image ($0.045/장)
+        const res = await ai.models.generateContent({
+            model: 'gemini-3.1-flash-image-preview',
+            contents: [{ role: 'user', parts: [{ text: fullPrompt }] }],
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            config: { responseModalities: [Modality.IMAGE, Modality.TEXT] } as any,
         });
-        clearTimeout(timer);
-        if (!response.ok) return null;
-        const blob = await response.blob();
-        return blobToBase64(blob);
-    } catch { return null; }
+        const parts = res.candidates?.[0]?.content?.parts ?? [];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const imgPart = parts.find((p: any) => p.inlineData?.mimeType?.startsWith('image/')) as any;
+        if (imgPart?.inlineData?.data) {
+            return `data:${imgPart.inlineData.mimeType};base64,${imgPart.inlineData.data}`;
+        }
+        return null;
+    } catch {
+        return null;
+    }
 };
 
 const getCountryAesthetic = (language: string): string => {
@@ -1208,19 +1227,12 @@ export const generateImage = async (
 
     const [width, height] = getPlatformImageSize(imageType, aspectRatio, blogPlatform);
 
-    // 1순위: Pollinations.ai flux → turbo (API 키 불필요, 무료)
-    const pollinationsResult = await generateImageWithPollinations(enhancedPrompt, width, height);
-    if (pollinationsResult) return pollinationsResult;
+    // 1순위: Pollinations.ai (무료, API 키 불필요)
+    const free = await generateImageWithPollinations(enhancedPrompt, width, height);
+    if (free) return free;
 
-    // 2순위: Hugging Face (API 키 있을 때)
-    const hasHfKey = !!localStorage.getItem('hfApiKey_b64');
-    if (hasHfKey) {
-        const huggingFaceResult = await generateImageWithHuggingFace(enhancedPrompt, width, height);
-        if (huggingFaceResult) return huggingFaceResult;
-        return null;
-    }
-
-    return null;
+    // 2순위: Gemini (유료 플랜일 때 자동 fallback)
+    return await generateImageWithGemini(enhancedPrompt, aspectRatio);
 };
 
 /**

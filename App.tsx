@@ -11,7 +11,7 @@ import { BlogPostGenerator } from './components/BlogPostGenerator';
 const Header: React.FC<{ onOpenSettings: () => void; }> = ({ onOpenSettings }) => (
   <header className="relative text-center p-4 md:p-6 border-b border-gray-700">
     <h1 className="text-3xl md:text-2xl font-bold text-white mb-2 font-korean title-effect">
-        <span>지나 블로그 올인원</span>
+        <span>지나 블로그</span>
     </h1>
     <p className="text-gray-400 text-sm md:text-base font-korean">블로그 글쓰기 모든것</p>
     <div className="absolute top-1/2 right-4 md:right-6 -translate-y-1/2 flex items-center space-x-1 sm:space-x-2">
@@ -31,7 +31,7 @@ const Header: React.FC<{ onOpenSettings: () => void; }> = ({ onOpenSettings }) =
 
 const Footer: React.FC = () => (
   <footer className="text-center p-6 mt-8 border-t border-gray-700 text-gray-500 text-sm">
-    <p>지나 블로그 올인원</p>
+    <p>지나 블로그</p>
   </footer>
 );
 
@@ -54,18 +54,13 @@ const SettingsModal: React.FC<{
     status: 'unconfigured' | 'testing' | 'success' | 'error';
     error: string | null;
     onTestAndSave: () => void;
-    huggingFaceApiKey: string;
-    setHuggingFaceApiKey: (key: string) => void;
-    onSaveHuggingFace: () => void;
     onDeleteGemini: () => void;
     onDeleteNaver: () => void;
-    onDeleteHuggingFace: () => void;
 }> = ({
     isOpen, onClose,
     geminiApiKey, setGeminiApiKey, onSaveGemini, geminiStatus, geminiError, onTestAndSaveGemini, showGeminiKey, setShowGeminiKey,
     clientId, setClientId, clientSecret, setClientSecret, status, error, onTestAndSave,
-    huggingFaceApiKey, setHuggingFaceApiKey, onSaveHuggingFace,
-    onDeleteGemini, onDeleteNaver, onDeleteHuggingFace
+    onDeleteGemini, onDeleteNaver
 }) => {
     if (!isOpen) return null;
 
@@ -160,43 +155,22 @@ const SettingsModal: React.FC<{
                     </div>
 
                     <div className="border-t border-slate-700 pt-6">
-                        <h3 className="text-lg font-semibold text-white mb-3">🎨 Pollinations.ai (이미지 생성)</h3>
-                        <p className="text-sm text-slate-400 mb-3">블로그 대표 이미지 및 서브 이미지 생성에 사용됩니다. <strong className="text-white">API 키 불필요 · 완전 무료</strong></p>
-                        <div className="flex items-center gap-2 bg-slate-900 border border-green-700 rounded-md px-4 py-3">
+                        <h3 className="text-lg font-semibold text-white mb-3">🎨 이미지 생성</h3>
+                        <p className="text-sm text-slate-400 mb-3">무료 → 유료 순서로 자동 시도합니다.</p>
+                        <div className="flex items-center gap-2 bg-slate-900 border border-green-700 rounded-md px-4 py-3 mb-2">
                             <span className="text-green-400 text-lg">✅</span>
                             <div>
-                                <p className="text-green-400 font-semibold text-sm">활성화됨 — 설정 없이 바로 사용 가능</p>
-                                <p className="text-slate-400 text-xs mt-0.5">FLUX → turbo 순서로 자동 시도 · 실패 시 Hugging Face로 전환</p>
+                                <p className="text-green-400 font-semibold text-sm">1순위: Pollinations.ai — 완전 무료</p>
+                                <p className="text-slate-400 text-xs mt-0.5">API 키 불필요 · FLUX 모델 · 30~60초 소요</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="border-t border-slate-700 pt-6">
-                        <h3 className="text-lg font-semibold text-white mb-3">🎨 Hugging Face API 설정 (무료 이미지 생성)</h3>
-                        <p className="text-sm text-slate-400 mb-1">이미지 생성 우선순위: <span className="text-cyan-400">Pollinations.ai (무료·키 불필요) → Hugging Face → Gemini</span></p>
-                        <p className="text-sm text-slate-400 mb-4">Pollinations.ai가 실패할 때 Hugging Face FLUX 모델을 사용합니다. <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer" className="text-cyan-400 underline">Hugging Face</a>에서 무료 API 키 발급 가능.</p>
-                        <div className="space-y-4">
-                            <input
-                                type="password"
-                                value={huggingFaceApiKey}
-                                onChange={(e) => setHuggingFaceApiKey(e.target.value)}
-                                placeholder="hf_xxxxxxxxxxxx (선택사항)"
-                                className="w-full bg-slate-900 border border-slate-600 rounded-md px-4 py-2 text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500"
-                            />
-                            <button
-                                onClick={onSaveHuggingFace}
-                                className="w-full bg-yellow-600 text-white font-bold py-2 px-4 rounded-md hover:bg-yellow-500 transition-colors flex items-center justify-center"
-                            >
-                                저장
-                            </button>
-                            <button
-                                onClick={onDeleteHuggingFace}
-                                className="w-full bg-red-700 text-white font-bold py-2 px-4 rounded-md hover:bg-red-600 transition-colors"
-                            >
-                                API 키 삭제
-                            </button>
+                        <div className="flex items-center gap-2 bg-slate-900 border border-slate-600 rounded-md px-4 py-3">
+                            <span className="text-slate-400 text-lg">🤖</span>
+                            <div>
+                                <p className="text-slate-400 font-semibold text-sm">2순위: Gemini Imagen 4 — $0.02/장 (유료 플랜 전용)</p>
+                                <p className="text-slate-400 text-xs mt-0.5">무료가 실패할 때만 사용 · 빠름</p>
+                            </div>
                         </div>
-                        {huggingFaceApiKey && <p className="mt-3 text-sm text-green-400">✅ Hugging Face 키 설정됨</p>}
                     </div>
                 </div>
             </div>
@@ -233,8 +207,6 @@ function App() {
   const [apiStatus, setApiStatus] = useState<'unconfigured' | 'testing' | 'success' | 'error'>('unconfigured');
   const [apiError, setApiError] = useState<string | null>(null);
 
-  // --- Hugging Face API State ---
-  const [huggingFaceApiKey, setHuggingFaceApiKey] = useState('');
   
   // --- State for linking Generator and KeywordFighter / NaverAnalyzer ---
   const [urlToAnalyze, setUrlToAnalyze] = useState<string | null>(null);
@@ -262,9 +234,6 @@ function App() {
               setApiStatus('success');
           }
 
-          // Hugging Face
-          const hf_b64 = localStorage.getItem('hfApiKey_b64');
-          if (hf_b64) setHuggingFaceApiKey(atob(hf_b64));
       } catch (e) {
           console.error("Failed to load or decode API keys from localStorage:", e);
           localStorage.removeItem('naverClientId_b64');
@@ -310,14 +279,6 @@ function App() {
   };
 
 
-  const handleSaveHuggingFaceKey = () => {
-      const key = huggingFaceApiKey.trim();
-      if (key) {
-          localStorage.setItem('hfApiKey_b64', btoa(key));
-      } else {
-          localStorage.removeItem('hfApiKey_b64');
-      }
-  };
 
   const handleDeleteGemini = () => {
       localStorage.removeItem('geminiApiKey_b64');
@@ -335,10 +296,6 @@ function App() {
       setApiError(null);
   };
 
-  const handleDeleteHuggingFace = () => {
-      localStorage.removeItem('hfApiKey_b64');
-      setHuggingFaceApiKey('');
-  };
 
   // --- Topic Suggestion State ---
   type TopicSuggestionTab = 'viral' | 'eeat' | 'category' | 'evergreen' | 'longtail' | 'memo' | 'expansion';
@@ -860,12 +817,8 @@ function App() {
         status={apiStatus}
         error={apiError}
         onTestAndSave={handleTestAndSaveCredentials}
-        huggingFaceApiKey={huggingFaceApiKey}
-        setHuggingFaceApiKey={setHuggingFaceApiKey}
-        onSaveHuggingFace={handleSaveHuggingFaceKey}
         onDeleteGemini={handleDeleteGemini}
         onDeleteNaver={handleDeleteNaver}
-        onDeleteHuggingFace={handleDeleteHuggingFace}
       />
     </div>
   );
