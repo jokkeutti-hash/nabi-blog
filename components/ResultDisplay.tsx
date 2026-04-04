@@ -14,6 +14,7 @@ interface ResultDisplayProps {
   subImages: ProcessedContent['subImages'] | null;
   onGenerateImage: () => Promise<void>;
   isGeneratingImage: boolean;
+  imageError?: string | null;
   onDeleteImage?: () => void;
   onGenerateSubImage: (index: number) => Promise<void>;
   isGeneratingSubImages: Record<number, boolean>;
@@ -35,6 +36,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
   subImages,
   onGenerateImage,
   isGeneratingImage,
+  imageError,
   onGenerateSubImage,
   isGeneratingSubImages,
   onDeleteImage,
@@ -407,6 +409,9 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
                             삭제
                         </button>
                     </div>
+                    {imageError && (
+                        <p className="text-red-400 text-xs mt-2 text-center">{imageError}</p>
+                    )}
 
                     {shouldAddThumbnailText && (
                       <button

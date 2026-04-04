@@ -1153,7 +1153,7 @@ const generateImageWithPollinations = async (prompt: string, width: number, heig
         try {
             const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${width}&height=${height}&nologo=true&model=${model}`;
             const controller = new AbortController();
-            const timer = setTimeout(() => controller.abort(), model === 'flux' ? 60000 : 20000);
+            const timer = setTimeout(() => controller.abort(), model === 'flux' ? 15000 : 10000);
             const response = await fetch(url, { signal: controller.signal });
             clearTimeout(timer);
             if (!response.ok) continue;

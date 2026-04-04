@@ -95,6 +95,7 @@ export const BlogPostGenerator: React.FC<BlogPostGeneratorProps> = ({
   const [generatedContent, setGeneratedContent] = useState<ProcessedContent | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
   const [isGeneratingImage, setIsGeneratingImage] = useState<boolean>(false);
   const [isGeneratingSubImages, setIsGeneratingSubImages] = useState<Record<number, boolean>>({});
   const [regenerationFeedback, setRegenerationFeedback] = useState<string>('');
@@ -787,10 +788,13 @@ https://blackkiwi.net/`);
   }, [topic, selectedTheme, shouldGenerateImage, shouldGenerateSubImages, interactiveElementIdea, shouldIncludeInteractiveElement, activeSuggestionTab, memoContent, tone, targetAudience, additionalRequest, thumbnailAspectRatio, internalLinksList, shouldIncludeInternalLinks, externalSourceOption, externalLinks, shouldGenerateAffiliateAd, adProduct, adStyle, adDisclosureOption, adDisclosureText, adHookMessage, shouldGenerateCta, language]);
 
   const handleGenerateImage = async () => {
-    if (!generatedContent?.supplementaryInfo.imagePrompt) return;
+    if (!generatedContent?.supplementaryInfo?.imagePrompt) {
+        setImageError("이미지 프롬프트가 없습니다. 블로그 포스트를 먼저 생성해주세요.");
+        return;
+    }
 
     setIsGeneratingImage(true);
-    setError(null);
+    setImageError(null);
     try {
         const newImageBase64 = await generateImage(generatedContent.supplementaryInfo.imagePrompt, thumbnailAspectRatio, blogPlatform, 'main', language);
         if (newImageBase64) {
@@ -805,14 +809,10 @@ https://blackkiwi.net/`);
                 return { ...prev, imageUrl: newImageUrl };
             });
         } else {
-             setError("이미지를 생성하지 못했습니다.");
+            setImageError("이미지 생성 실패 — Pollinations 및 Gemini 모두 응답 없음. 잠시 후 재시도해주세요.");
         }
     } catch (err) {
-        if (err instanceof Error) {
-            setError(err.message);
-        } else {
-            setError('이미지 생성 중 알 수 없는 오류가 발생했습니다.');
-        }
+        setImageError(err instanceof Error ? err.message : '이미지 생성 중 알 수 없는 오류가 발생했습니다.');
     } finally {
         setIsGeneratingImage(false);
     }
@@ -1493,6 +1493,7 @@ https://blackkiwi.net/`);
                 subImages={generatedContent.subImages}
                 onGenerateImage={handleGenerateImage}
                 isGeneratingImage={isGeneratingImage}
+                imageError={imageError}
                 onGenerateSubImage={handleGenerateSubImage}
                 isGeneratingSubImages={isGeneratingSubImages}
                 shouldAddThumbnailText={shouldAddThumbnailText}
