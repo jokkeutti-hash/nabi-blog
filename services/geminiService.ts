@@ -1179,12 +1179,12 @@ const generateImageWithGemini = async (prompt: string, aspectRatio: '16:9' | '1:
                 config: { numberOfImages: 1, aspectRatio: ratio, outputMimeType: 'image/jpeg' },
             });
             const bytes = res?.generatedImages?.[0]?.image?.imageBytes;
-            if (bytes) return `data:image/jpeg;base64,${bytes}`;
+            if (bytes) return bytes; // 순수 base64만 반환
         } catch { /* fallback */ }
 
-        // 2순위: Gemini 3.1 Flash Image ($0.045/장)
+        // 2순위: Gemini 2.0 Flash Image
         const res = await ai.models.generateContent({
-            model: 'gemini-3.1-flash-image-preview',
+            model: 'gemini-2.0-flash-preview-image-generation',
             contents: [{ role: 'user', parts: [{ text: fullPrompt }] }],
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             config: { responseModalities: [Modality.IMAGE, Modality.TEXT] } as any,
@@ -1193,7 +1193,7 @@ const generateImageWithGemini = async (prompt: string, aspectRatio: '16:9' | '1:
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const imgPart = parts.find((p: any) => p.inlineData?.mimeType?.startsWith('image/')) as any;
         if (imgPart?.inlineData?.data) {
-            return `data:${imgPart.inlineData.mimeType};base64,${imgPart.inlineData.data}`;
+            return imgPart.inlineData.data; // 순수 base64만 반환
         }
         return null;
     } catch {
