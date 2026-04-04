@@ -365,7 +365,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
                  <div className="mt-4">
                     <div className="w-full bg-gray-900 rounded-lg mb-3 flex items-center justify-center border-2 border-gray-700 border-dashed overflow-hidden relative" style={{ aspectRatio: thumbnailAspectRatio === '16:9' ? '16 / 9' : '1 / 1' }}>
                         {imageUrl ? (
-                            <img src={imageUrl} alt={supplementaryInfo.altText} className="w-full h-full object-cover" />
+                            <img src={imageUrl} alt={supplementaryInfo.altText} className="w-full h-full object-contain" />
                         ) : (
                             <div className="text-gray-600 flex flex-col items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">

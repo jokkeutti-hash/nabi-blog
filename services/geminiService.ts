@@ -1223,7 +1223,7 @@ export const generateImage = async (
     language: string = 'ko'
 ): Promise<string | null> => {
     const countryAesthetic = getCountryAesthetic(language);
-    const enhancedPrompt = `NO text, NO letters, NO words, NO typography, NO watermark, NO captions, NO signs, NO labels, purely visual image only — ${prompt}, ${countryAesthetic}, cinematic lighting, sharp detail, 8k resolution.`;
+    const enhancedPrompt = `NO text, NO letters, NO words, NO typography, NO watermark, NO captions, NO signs, NO labels, purely visual image only — ${prompt}, ${countryAesthetic}, perfect anatomy, natural body proportions, realistic face, cinematic lighting, sharp detail, 8k resolution.`;
 
     const [width, height] = getPlatformImageSize(imageType, aspectRatio, blogPlatform);
 
