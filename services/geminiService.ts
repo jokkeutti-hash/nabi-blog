@@ -1203,15 +1203,15 @@ const generateImageWithGemini = async (prompt: string, aspectRatio: '16:9' | '1:
 
 const getCountryAesthetic = (language: string): string => {
     switch (language) {
-        case 'ko': return 'authentic South Korean lifestyle, vibrant Seoul cityscape or modern Korean interior, cozy cafe or kitchen scene, fresh food plating, K-aesthetic objects and decor, high-fidelity lifestyle photography, NO people, NO faces';
-        case 'ja': return 'authentic Japanese lifestyle, Tokyo cityscape or modern Japanese interior, minimalist Japanese objects and decor, J-style photography, NO people, NO faces';
-        case 'zh': return 'authentic Chinese lifestyle, modern Chinese cityscape or interior, contemporary Chinese aesthetic photography, NO people, NO faces';
-        case 'en': return 'authentic Western lifestyle, modern cosmopolitan cityscape or interior, contemporary lifestyle objects and decor photography, NO people, NO faces';
-        case 'es': return 'authentic Latin lifestyle, vibrant local cityscape or interior, warm Mediterranean aesthetic, lifestyle objects photography, NO people, NO faces';
-        case 'fr': return 'authentic French lifestyle, Parisian aesthetic, modern French interior or street scene, elegant objects and decor, NO people, NO faces';
-        case 'de': return 'authentic German lifestyle, modern European cityscape or interior, contemporary lifestyle objects photography, NO people, NO faces';
-        case 'pt': return 'authentic Portuguese or Brazilian lifestyle, vibrant local cityscape or interior, warm aesthetic lifestyle photography, NO people, NO faces';
-        default:   return 'authentic local lifestyle aesthetic, modern cityscape or interior appropriate for the target audience, cinematic lifestyle photography, NO people, NO faces';
+        case 'ko': return 'authentic South Korean lifestyle, vibrant Seoul cityscape or modern Korean interior, beautiful natural-looking Korean people if shown, cozy cafe or kitchen, fresh food plating, K-aesthetic, high-fidelity lifestyle photography, soft natural lighting, warm tones';
+        case 'ja': return 'authentic Japanese lifestyle, Tokyo cityscape or modern Japanese interior, beautiful natural-looking Japanese people if shown, minimalist Japanese aesthetic, J-style photography, soft natural lighting';
+        case 'zh': return 'authentic Chinese lifestyle, modern Chinese cityscape or interior, beautiful natural-looking people if shown, contemporary Chinese aesthetic photography, soft natural lighting';
+        case 'en': return 'authentic Western lifestyle, modern cosmopolitan cityscape or interior, beautiful natural-looking people if shown, contemporary lifestyle photography, soft natural lighting';
+        case 'es': return 'authentic Latin lifestyle, vibrant local cityscape or interior, beautiful natural-looking people if shown, warm Mediterranean aesthetic, lifestyle photography, soft natural lighting';
+        case 'fr': return 'authentic French lifestyle, Parisian aesthetic, beautiful natural-looking people if shown, modern French interior or street scene, elegant lifestyle photography, soft natural lighting';
+        case 'de': return 'authentic German lifestyle, modern European cityscape or interior, beautiful natural-looking people if shown, contemporary lifestyle photography, soft natural lighting';
+        case 'pt': return 'authentic Portuguese or Brazilian lifestyle, vibrant local cityscape or interior, beautiful natural-looking people if shown, warm aesthetic lifestyle photography, soft natural lighting';
+        default:   return 'authentic local lifestyle aesthetic, modern cityscape or interior, beautiful natural-looking people if shown, cinematic lifestyle photography, soft natural lighting';
     }
 };
 
@@ -1223,7 +1223,7 @@ export const generateImage = async (
     language: string = 'ko'
 ): Promise<string | null> => {
     const countryAesthetic = getCountryAesthetic(language);
-    const enhancedPrompt = `NO people, NO faces, NO text, NO letters, NO words, NO typography, NO watermark, NO captions, NO signs, NO labels, purely visual image only — ${prompt}, ${countryAesthetic}, cinematic lighting, sharp detail, 8k resolution.`;
+    const enhancedPrompt = `NO text, NO letters, NO words, NO typography, NO watermark, NO captions, NO signs, NO labels, purely visual image only — ${prompt}, ${countryAesthetic}, cinematic lighting, sharp detail, 8k resolution.`;
 
     const [width, height] = getPlatformImageSize(imageType, aspectRatio, blogPlatform);
 
