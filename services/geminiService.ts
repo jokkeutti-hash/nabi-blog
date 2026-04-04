@@ -334,11 +334,11 @@ const jsonStructureForPrompt = `{
         "blogspotLabels": ["대분류", "핵심주제", "연관주제"],
         "metaDescription": "A compelling summary of the post without any dates or years.",
         "imagePrompt": "A detailed English prompt for a purely visual image — NO text, NO letters, NO watermark — emphasizing realistic Korean aesthetics, Korean lifestyle, K-aesthetic photography, cinematic composition...",
-        "altText": "A concise and descriptive alt text...",
+        "altText": "대표 이미지를 설명하는 한국어 ALT 텍스트 (반드시 한국어로 작성)",
         "seoTitles": ["숫자+키워드 제목 (예: 5가지 ~하는 법)", "문제해결형 제목 (예: ~때문에 고민이라면)", "이득강조형 제목 (예: 모르면 손해인 ~)", "궁금증형 제목 (예: ~하면 어떻게 될까)"],
-        "thumbnailTitles": ["Short thumbnail title 1", "Short thumbnail title 2"],
+        "thumbnailTitles": ["썸네일 제목 1", "썸네일 제목 2"],
         "subImagePrompts": [
-            { "prompt": "A detailed English prompt describing the specific scene for this H2 section — NO text, NO letters, NO watermark — specific subject, background, mood, color palette, and composition related to the section topic, authentic South Korean lifestyle aesthetic, cinematic lighting, high-fidelity K-aesthetic photography, sharp detail, 8k resolution, purely visual image only", "altText": "Alt text for sub-image 1" }
+            { "prompt": "A detailed English prompt describing the specific scene for this H2 section — NO text, NO letters, NO watermark — specific subject, background, mood, color palette, and composition related to the section topic, authentic South Korean lifestyle aesthetic, cinematic lighting, high-fidelity K-aesthetic photography, sharp detail, 8k resolution, purely visual image only", "altText": "해당 섹션 이미지를 설명하는 한국어 ALT 텍스트 (반드시 한국어로 작성)" }
         ],
         "slug": "english-url-slug-example"
     },
