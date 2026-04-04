@@ -96,6 +96,7 @@ export const BlogPostGenerator: React.FC<BlogPostGeneratorProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
+  const [version, setVersion] = useState<number>(0);
   const [isGeneratingImage, setIsGeneratingImage] = useState<boolean>(false);
   const [isGeneratingSubImages, setIsGeneratingSubImages] = useState<Record<number, boolean>>({});
   const [regenerationFeedback, setRegenerationFeedback] = useState<string>('');
@@ -775,6 +776,7 @@ https://blackkiwi.net/`);
       blobUrlsToRevoke.current = newUrls;
 
       setGeneratedContent(processedContent);
+      setVersion(prev => prev + 1);
 
     } catch (err) {
       if (err instanceof Error) {
@@ -1502,6 +1504,8 @@ https://blackkiwi.net/`);
                 thumbnailDataUrl={thumbnailDataUrl}
                 thumbnailAspectRatio={thumbnailAspectRatio}
                 blogPlatform={blogPlatform}
+                version={version}
+                topic={topic}
             />
         )}
         

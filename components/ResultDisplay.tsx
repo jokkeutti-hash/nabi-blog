@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import JSZip from 'jszip';
 import { ProcessedContent } from '../types';
 import { CopyToClipboardButton, SocialMediaPostCard, workerBlob, copyToClipboard } from './Common';
 import { InteractiveCodeModal } from './InteractiveCodeModal';
@@ -25,6 +26,8 @@ interface ResultDisplayProps {
   thumbnailDataUrl: string | null;
   thumbnailAspectRatio: '16:9' | '1:1';
   blogPlatform?: string;
+  version: number;
+  topic: string;
 }
 
 export const ResultDisplay: React.FC<ResultDisplayProps> = ({
@@ -47,13 +50,78 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
   thumbnailDataUrl,
   thumbnailAspectRatio,
   blogPlatform,
+  version,
+  topic,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [isDownloadingZip, setIsDownloadingZip] = useState(false);
   const [viewMode, setViewMode] = useState<'preview' | 'html' | 'naver'>('preview');
   const previewRef = useRef<HTMLDivElement>(null);
   const fullscreenRef = useRef<HTMLDivElement>(null);
   const [isInteractiveCodeModalOpen, setInteractiveCodeModalOpen] = useState(false);
   const [isFullscreenPreview, setIsFullscreenPreview] = useState(false);
+
+  const handleDownloadZip = async () => {
+    if (!htmlContent) return;
+    setIsDownloadingZip(true);
+    try {
+      const zip = new JSZip();
+      const safeTitle = (topic || '블로그포스트').replace(/[\\/:*?"<>|]/g, '_').slice(0, 40);
+      const folderName = `${safeTitle}_v${version}`;
+      const folder = zip.folder(folderName)!;
+
+      // 1. HTML
+      folder.file('post.html', htmlContent);
+
+      // 2. 메타데이터 JSON
+      if (supplementaryInfo) {
+        folder.file('metadata.json', JSON.stringify(supplementaryInfo, null, 2));
+      }
+
+      // 3. 대표 이미지
+      if (imageUrl) {
+        try {
+          const res = await fetch(imageUrl);
+          const blob = await res.blob();
+          folder.file('featured-image.jpg', blob);
+        } catch { /* skip */ }
+      }
+
+      // 4. 썸네일
+      if (thumbnailDataUrl) {
+        try {
+          const res = await fetch(thumbnailDataUrl);
+          const blob = await res.blob();
+          folder.file('thumbnail.jpg', blob);
+        } catch { /* skip */ }
+      }
+
+      // 5. 서브 이미지
+      if (subImages) {
+        for (let i = 0; i < subImages.length; i++) {
+          const sub = subImages[i];
+          if (sub.url) {
+            try {
+              const res = await fetch(sub.url);
+              const blob = await res.blob();
+              folder.file(`sub-image-${i + 1}.jpg`, blob);
+            } catch { /* skip */ }
+          }
+        }
+      }
+
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(zipBlob);
+      a.download = `${folderName}.zip`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    } catch (e) {
+      console.error('ZIP 생성 실패:', e);
+    } finally {
+      setIsDownloadingZip(false);
+    }
+  };
 
   const [formattedHtmlForView, setFormattedHtmlForView] = useState('');
   const workerRef = useRef<Worker | null>(null);
@@ -275,17 +343,34 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
 
   return (
     <div className="mt-8">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-semibold text-white">생성된 콘텐츠</h2>
-        <button
-          onClick={() => setIsFullscreenPreview(true)}
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition-colors text-sm font-semibold shadow-lg"
-        >
+      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+        <div className="flex items-center gap-3">
+          <h2 className="text-2xl font-semibold text-white">생성된 콘텐츠</h2>
+          <span className="bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded-full">v{version}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleDownloadZip}
+            disabled={isDownloadingZip}
+            className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-500 transition-colors text-sm font-semibold shadow-lg disabled:bg-gray-600"
+          >
+            {isDownloadingZip ? (
+              <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            )}
+            전체 다운로드 (ZIP)
+          </button>
+          <button
+            onClick={() => setIsFullscreenPreview(true)}
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition-colors text-sm font-semibold shadow-lg"
+          >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
           </svg>
           전체화면 미리보기
-        </button>
+          </button>
+        </div>
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         <div className="md:col-span-2 bg-gray-800 rounded-lg shadow-lg overflow-hidden">
