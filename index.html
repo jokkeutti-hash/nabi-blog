@@ -3,75 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>지나 블로그</title>
+    <title>나비 — 네이버 블로그 SEO 도구</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Gowun+Dodum&family=Black+Han+Sans&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-    <style>
-      @font-face {
-          font-family: 'GmarketSans';
-          font-weight: 700;
-          font-style: normal;
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
-          font-display: swap;
-      }
-      @font-face {
-          font-family: 'Cafe24Ssurround';
-          font-weight: normal; /* This font is naturally bold */
-          font-style: normal;
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Cafe24Ssurround.woff2') format('woff2');
-          font-display: swap;
-      }
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: #1e293b;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #475569;
-        border-radius: 4px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
-      }
-      @keyframes title-glow {
-        0%, 100% {
-          text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3);
-        }
-        50% {
-          text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5);
-        }
-      }
-      .title-effect span {
-        animation: title-glow 3s infinite ease-in-out;
-      }
-    </style>
-    <style>
-      html, body, * {
-        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        word-break: keep-all;
-        letter-spacing: -0.01em;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles.css">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
               sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-              korean: ['Pretendard', '-apple-system', 'sans-serif'],
             },
           },
         },
       }
     </script>
-</head>
-  <body class="bg-gray-900">
+  </head>
+  <body class="bg-gray-950">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
