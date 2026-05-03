@@ -1,4 +1,4 @@
-import { NaverSeoMethod, NaviResult, NaviTitleResult, SeoReport } from '../types';
+import { NaverSeoMethod, NaviResult } from '../types';
 
 // ─── API Key Helpers ───────────────────────────────────────────────────────────
 
@@ -169,15 +169,22 @@ const JSON_STRUCTURE = `{
 
 export interface WriteOptions {
     topic: string;
-    keywords?: string;
+    mainKeyword?: string;
+    subKeywords?: string;
     method: NaverSeoMethod;
-    persona?: string;
+    humanize?: boolean;
     imageCount?: number;
     includeFaq?: boolean;
-    isProduct?: boolean;
-    productInfo?: string;
-    additionalRequest?: string;
 }
+
+const HUMANIZE_INSTRUCTIONS = `
+## 인간화 페르소나 적용 (AI 탐지 우회)
+- AI 특유의 정형성을 파괴하고 덕후형 블로거의 말투를 재현합니다
+- 패턴 흔들기: 상투적 클리셰("궁금하지 않으신가요?", "어떻게 생각하시나요?") 완전 제거
+- 불균형한 문장 리듬(Burstiness) — 짧은 문장과 긴 문장을 의도적으로 혼합
+- 1인칭 경험담 삽입("제가 직접 해봤는데...", "솔직히 말하면...")
+- 구어체 질감 강화 — 자연스러운 입말체 표현 사용
+- 섹션 길이 및 소제목 형식의 무작위성 부여`;
 
 export async function generateNaverPost(opts: WriteOptions): Promise<NaviResult> {
     const imgCount = opts.imageCount ?? 3;
@@ -187,10 +194,9 @@ export async function generateNaverPost(opts: WriteOptions): Promise<NaviResult>
 아래 주제로 네이버 블로그 최적화 포스트를 작성하세요.
 
 [주제] ${opts.topic}
-${opts.keywords ? `[키워드] ${opts.keywords}` : ''}
-${opts.persona ? `[페르소나] ${opts.persona}` : ''}
-${opts.isProduct && opts.productInfo ? `[상품 정보]\n${opts.productInfo}` : ''}
-${opts.additionalRequest ? `[추가 요청] ${opts.additionalRequest}` : ''}
+${opts.mainKeyword ? `[메인 키워드] ${opts.mainKeyword}` : ''}
+${opts.subKeywords ? `[서브 키워드] ${opts.subKeywords}` : ''}
+${opts.humanize ? HUMANIZE_INSTRUCTIONS : ''}
 
 ${methodInstructions}
 
@@ -408,4 +414,30 @@ export async function generateImage(
     } catch {}
 
     throw new Error('이미지 생성 실패');
+}
+
+// ─── Analyze Existing Post ─────────────────────────────────────────────────────
+
+export async function analyzePost(content: string): Promise<{ title: string; mainKeyword: string; subKeywords: string }> {
+    const prompt = `다음 블로그 글을 분석하여 SEO 최적화 제목과 키워드를 추출하세요.
+
+[글 내용]
+${content.slice(0, 3000)}
+
+반드시 아래 JSON만 반환:
+\`\`\`json
+{"title": "SEO 최적화 제목", "mainKeyword": "핵심 키워드 1개", "subKeywords": "서브키워드1, 서브키워드2, 서브키워드3"}
+\`\`\``;
+
+    const raw = await callAI(prompt, 0.3);
+    try {
+        const parsed = extractJson(raw);
+        return {
+            title: parsed.title || '',
+            mainKeyword: parsed.mainKeyword || '',
+            subKeywords: parsed.subKeywords || '',
+        };
+    } catch {
+        return { title: '', mainKeyword: '', subKeywords: '' };
+    }
 }
